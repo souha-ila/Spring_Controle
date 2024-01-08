@@ -14,15 +14,18 @@ public class Produit implements Serializable{
 	private String description;
 	private double prix;
 	private String name;
+	private String img;
+	
 	public Produit() {
 		super();
 		
 	}
-	public Produit(String description, double prix,String name) {
+	public Produit(String description, double prix,String name,String img) {
 		super();
 		this.description = description;
 		this.prix = prix;
 		this.name = name;
+		this.img = img;
 	}
 	public Integer getId() {
 		return id;
@@ -48,6 +51,12 @@ public class Produit implements Serializable{
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
 	}
 
 }

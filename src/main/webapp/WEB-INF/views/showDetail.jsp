@@ -1,12 +1,9 @@
-
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ page isELIgnored="false"%>
-<%@ page import="com.example.demo.entity.Blog" %>
-<%@ page import="com.example.demo.entity.Chat" %>
-<%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html lang="en">
-
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page isELIgnored="false"%>
+<%@ page import="com.example.demo.entity.Chat" %>
+<%@ page import="java.util.List" %>
 <head>
   <title>CatZOOm</title>
   <meta charset="utf-8">
@@ -176,13 +173,13 @@
               </li>
               
                <li class="nav-item">
-                <a href="#adopt" class="nav-link">adopt</a>
+                <a href="#" class="nav-link">adopt</a>
               </li>
               <li class="nav-item">
-                <a href="#shop" class="nav-link">Shop</a>
+                <a href="shop.html" class="nav-link">Shop</a>
               </li>
               <li class="nav-item">
-                <a href="#blog" class="nav-link">Blog</a>
+                <a href="blog.html" class="nav-link">Blog</a>
               </li>
               <li class="nav-item">
                 <a href="contact" class="nav-link">Contact</a>
@@ -294,285 +291,39 @@
       </div>
     </div>
   </section>
+  
 
-<section id="categories">
-    <div class="container my-3 py-5">
-        <div class="row my-5">
-            <div class="col text-center">
-                <a href="#" class="categories-item">
-                    <iconify-icon class="category-icon" icon="ph:bowl-food"></iconify-icon>
-                    <h5>Cat Foodies</h5>
-                </a>
-            </div>
-            <div class="col text-center">
-                <a href="#" class="categories-item">
-                    <iconify-icon class="category-icon" icon="ph:heartbeat"></iconify-icon>
-                    <h5>Cat Health</h5>
-                </a>
-            </div>
-          <div class="col text-center">
-    <a href="#" class="categories-item">
-        <iconify-icon class="category-icon" icon="ph:cat"></iconify-icon>
-        <h5>Playful Cat Toys</h5>
-    </a>
-</div>
-
-            <div class="col text-center">
-                <a href="#" class="categories-item">
-                    <iconify-icon class="category-icon" icon="ph:cat"></iconify-icon>
-                    <h5>Cat Accessories</h5>
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-
-
-  <section id="chat" class="my-5">
-    <div class="container my-5 py-5">
-
-      <div class="section-header d-md-flex justify-content-between align-items-center">
-        <h2 class="display-3 fw-normal">Say hello to cats</h2>
-     
-        <div>
-          <a href="/allcats" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
-            adopt now
-            <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
-              <use xlink:href="#arrow-right"></use>
-            </svg></a>
-        </div>
-      </div>
-<div class="isotope-container row">
-    <% 
-    // Assume "catsList" is the list of cats you have registered in your controller
-    List<Chat> chats = (List<Chat>) request.getAttribute("chats");
-
-    if (chats != null) {
-        for (int i = 0; i < Math.min(chats.size(), 4); i++) {
-            Chat cat = chats.get(i);
-    %>
-    <div class="item cat col-md-4 col-lg-3 my-4">
-        <div class="card position-relative">
-            <img src="<%= request.getContextPath() %>/resources/images/<%= cat.getImage() %>" class="img-fluid rounded-4" alt="image">
-            <div class="card-body p-0">
-                <h3 class="card-title pt-4 m-0"><%= cat.getNom() %></h3>
-                <div class="card-text">
-                    <p><%= cat.getDescription() %></p>
-                    <span class="rating secondary-font">
-                        <!-- You can add your logic to display the rating here -->
-                    </span>
-                    <a href="/showDetail/<%=cat.getId() %>" class="btn btn-primary">show details</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <%
-        }
-    }
-    %>
-</div>
-
-    </div>
-  </section>
-
-   
+  <section>
+   <div class="container">
+    <div class="row my-5 py-5">
       
-  <section id="banner-2" class="my-3" style="background: #F9F3EC;">
-    <div class="container">
-      <div class="row flex-row-reverse banner-content align-items-center">
-        <div class="img-wrapper col-12 col-md-6">
-          <img src="${pageContext.request.contextPath}/resources/images/2.png" class="img-fluid">
-        </div>
-        <div class="content-wrapper col-12 offset-md-1 col-md-5 p-5">
-          <div class="secondary-font text-primary text-uppercase mb-3 fs-4">Can you</div>
-          <h2 class="banner-title display-1 fw-normal">Adopt ME !!!
-          </h2>
-          <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
-            Adopt now
-            <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
-              <use xlink:href="#arrow-right"></use>
-            </svg></a>
+      <h2>Cat Details</h2>
+      <% 
+        Chat chat = (Chat) request.getAttribute("chat");
+      %>
+      <div class="row align-items-center">
+      
+        <div class="col-md-5">
+          <img src="<%= request.getContextPath() %>/resources/images/<%= chat.getImage() %>"
+               alt="<%= chat.getNom() %> Image" class="img-fluid rounded-4">
         </div>
 
-      </div>
-    </div>
-  </section>
+        <div class="col-md-7">
+          <h3><%= chat.getNom() %></h3>
+          <p><%= chat.getDescription() %></p>
 
-  <section id="testimonial">
-    <div class="container my-5 py-5">
-      <div class="row">
-        <div class="offset-md-1 col-md-10">
-          <div class="swiper testimonial-swiper">
-            <div class="swiper-wrapper">
-
-          
-              <div class="swiper-slide">
-                <div class="row ">
-                  <div class="col-2">
-                    <iconify-icon icon="ri:double-quotes-l" class="quote-icon text-primary"></iconify-icon>
-                  </div>
-                  <div class="col-md-10 mt-md-5 p-5 pt-0 pt-md-5">
-                    <p class="testimonial-content fs-2">A cat has absolute emotional honesty: human beings, for one reason or another, may hide their feelings, but a cat does not. </p>
-                    <p class="text-black">- Ernest Hemingway</p>
-                  </div>
-                </div>
-              </div>
-                  <div class="swiper-slide">
-                <div class="row ">
-                  <div class="col-2">
-                    <iconify-icon icon="ri:double-quotes-l" class="quote-icon text-primary"></iconify-icon>
-                  </div>
-                  <div class="col-md-10 mt-md-5 p-5 pt-0 pt-md-5">
-                    <p class="testimonial-content fs-2">Time spent with a cat is never wasted.
-                     </p>
-                    <p class="text-black">- Colette</p>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="row ">
-                  <div class="col-2">
-                    <iconify-icon icon="ri:double-quotes-l" class="quote-icon text-primary"></iconify-icon>
-                  </div>
-                  <div class="col-md-10 mt-md-5 p-5 pt-0 pt-md-5">
-                    <p class="testimonial-content fs-2">The way to get on with a cat is to treat it as an equal or even better, as the superior it knows itself to be.</p>
-                    <p class="text-black">-  Elizabeth Peters</p>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-
-            <div class="swiper-pagination"></div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </section>
-
-      <!-- / subscribe-->
-
-
-  <section id="register" style="background: url('images/background-img.png') no-repeat;">
-    <div class="container ">
-      <div class="row my-5 py-5">
-        <div class="offset-md-3 col-md-6 my-5 ">
-          <h2 class="display-3 fw-normal text-center"> for a purr-fectly <span class="text-primary">delightful experience!</span>
-          </h2>
-          <form>
-            <div class="mb-3">
-              <input type="email" class="form-control form-control-lg" name="email" id="email"
-                placeholder="Enter Your Email Address">
-            </div>
-            <div class="mb-3">
-              <input type="password" class="form-control form-control-lg" name="email" id="password1"
-                placeholder="Create Password">
-            </div>
-            <div class="mb-3">
-              <input type="password" class="form-control form-control-lg" name="email" id="password2"
-                placeholder="Repeat Password">
-            </div>
-
-            <div class="d-grid gap-2">
-              <button type="submit" class="btn btn-dark btn-lg rounded-1">Register it now</button>
-            </div>
+          <form action="<%= request.getContextPath() %>/cats/adopt/<%= chat.getId() %>" method="post">
+            <button type="submit" class="btn btn-primary">Adopt Now</button>
           </form>
         </div>
       </div>
     </div>
+    </div>
+    </div>
+    
   </section>
 
-  <section id="blog" class="my-5">
-    <div class="container py-5 my-5">
-      <div class="row mt-5">
-        <div class="section-header d-md-flex justify-content-between align-items-center mb-3">
-          <h2 class="display-3 fw-normal">Latest Blog Post</h2>
-          <div>
-            
-          </div>
-        </div>
-      </div>
-     <div class="row">
-    <% List<Blog> blogs = (List<Blog>) request.getAttribute("blogs");
-       for (Blog blog : blogs) { %>
-        <div class="col-md-4 my-4 my-md-0">
-            <!-- Votre code HTML pour afficher chaque blog -->
-            <h3 class="secondary-font text-primary m-0"><%= blog.getDate_publication() %></h3>
-            <a href="<%= request.getContextPath() %>/single-post.html">
-                <img src="<%= request.getContextPath() %>/resources/images/<%= blog.getImg() %>" class="img-fluid rounded-4" alt="image">
-            </a>
-            <div class="card position-relative">
-                <a href="<%= request.getContextPath() %>/single-post.html">
-                    <h3 class="card-title pt-4 pb-3 m-0"><%= blog.getTitre() %></h3>
-                </a>
-                <div class="card-text">
-                    >
-                    <a href="readmore.html" class="blog-read">read more</a>
-                </div>
-            </div>
-        </div>
-    <% } %>
-</div>
 
-    </div>
-  </section>
-
-<section id="insta" class="my-5">
-    <div class="row g-0 py-5">
-        <div class="col instagram-item text-center position-relative">
-            <div class="icon-overlay d-flex justify-content-center position-absolute">
-                <iconify-icon class="text-white" icon="la:instagram"></iconify-icon>
-            </div>
-            <a href="#">
-                <img src="${pageContext.request.contextPath}/resources/images/insta1.jpg" alt="insta-img" class="img-fluid rounded-3" style="height: 200px;">
-            </a>
-        </div>
-        <div class="col instagram-item text-center position-relative">
-            <div class="icon-overlay d-flex justify-content-center position-absolute">
-                <iconify-icon class="text-white" icon="la:instagram"></iconify-icon>
-            </div>
-            <a href="#">
-                <img src="${pageContext.request.contextPath}/resources/images/insta2.jpg" alt="insta-img" class="img-fluid rounded-3" style="height: 200px;">
-            </a>
-        </div>
-        <div class="col instagram-item text-center position-relative">
-            <div class="icon-overlay d-flex justify-content-center position-absolute">
-                <iconify-icon class="text-white" icon="la:instagram"></iconify-icon>
-            </div>
-            <a href="#">
-                <img src="${pageContext.request.contextPath}/resources/images/inst3.jpg" alt="insta-img" class="img-fluid rounded-3" style="height: 200px;">
-            </a>
-        </div>
-        <div class="col instagram-item text-center position-relative">
-            <div class="icon-overlay d-flex justify-content-center position-absolute">
-                <iconify-icon class="text-white" icon="la:instagram"></iconify-icon>
-            </div>
-            <a href="#">
-                <img src="${pageContext.request.contextPath}/resources/images/inst4.jpg" alt="insta-img" class="img-fluid rounded-3" style="height: 200px;">
-            </a>
-        </div>
-        <div class="col instagram-item text-center position-relative">
-            <div class="icon-overlay d-flex justify-content-center position-absolute">
-                <iconify-icon class="text-white" icon="la:instagram"></iconify-icon>
-            </div>
-            <a href="#">
-                <img src="${pageContext.request.contextPath}/resources/images/inst5.jpg" alt="insta-img" class="img-fluid rounded-3" style="height: 200px;">
-            </a>
-        </div>
-        <div class="col instagram-item text-center position-relative">
-            <div class="icon-overlay d-flex justify-content-center position-absolute">
-                <iconify-icon class="text-white" icon="la:instagram"></iconify-icon>
-            </div>
-            <a href="#">
-                <img src="${pageContext.request.contextPath}/resources/images/inst6.jpg" alt="insta-img" class="img-fluid rounded-3" style="height: 200px;">
-            </a>
-        </div>
-    </div>
-</section>
   <footer id="footer" class="my-5">
     <div class="container py-5 my-5">
       <div class="row">
@@ -679,7 +430,7 @@
       <hr class="m-0">
       <div class="row mt-3">
         <div class="col-md-6 copyright">
-          <p class="secondary-font">Â© 2024 CatZOOm. All rights reserved.</p>
+          <p class="secondary-font">© 2024 CatZOOm. All rights reserved.</p>
         </div>
         <div class="col-md-6 text-md-end">
           <p class="secondary-font">coded by <a href="https://templatesjungle.com/" target="_blank"

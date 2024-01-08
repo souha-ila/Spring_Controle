@@ -24,12 +24,12 @@ public class ProductController {
     @Autowired
     private ProduitService produitService;
 
-    @GetMapping({"/", "/index"})
+    @GetMapping({"/ll", "/ùindex"})
     public String index(Model model) {
         List<Produit> products = produitService.getProduits();
         model.addAttribute("products", products);
         System.out.println("Number of products: " + products.size()); // Debug print
-        return "index";
+        return "index1";
     }
  
     @GetMapping(path = "/addproduct")
